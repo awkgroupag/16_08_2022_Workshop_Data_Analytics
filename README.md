@@ -22,3 +22,4 @@ To create an environment for workshop participants to use the provided jupyter n
 * Open the link to load the notebooks some minutes before the workshops to be set when the workshop starts.
 * When closing the notebook, all changes will be reverted. 
 * In case permanent changes need to be made, please do so in the code on GitHub.
+* Before starting the course check that the internet-settings (Exp: VPN) at the Workshop-location and the laptops of participants allow access to "mybinder". The VPN might need to be disabled for the duration of the course.
