@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from bokeh.plotting import figure
 from bokeh.io import output_notebook, show, output_file
-from bokeh.models import ColumnDataSource, HoverTool, Panel
+from bokeh.models import ColumnDataSource, HoverTool, TabelPanel
 from bokeh.models.widgets import Tabs
 from bokeh.models import  HoverTool, ColumnDataSource
 import itertools
