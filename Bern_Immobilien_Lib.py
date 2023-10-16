@@ -51,7 +51,7 @@ def numerical_hist_hover(dataframe, column, colors=["SteelBlue", "Tan"], bins=30
     if log_scale == True:
         hist_df["log"] = np.log(hist_df[column])
         src = ColumnDataSource(hist_df)
-        plot = figure(plot_height = plot_height, plot_width = plot_width,
+        plot = figure(height = plot_height, width = plot_width,
               title = "Histogram {}".format(column.capitalize()),
               x_axis_label = column.capitalize(),
               y_axis_label = "Log Count")    
@@ -61,7 +61,7 @@ def numerical_hist_hover(dataframe, column, colors=["SteelBlue", "Tan"], bins=30
             hover_fill_alpha = 1.0, hover_fill_color = colors[1])
     else:
         src = ColumnDataSource(hist_df)
-        plot = figure(plot_height = plot_height, plot_width = plot_width,
+        plot = figure(height = plot_height, width = plot_width,
               title = "Histogram {}".format(column.capitalize()),
               x_axis_label = column.capitalize(),
               y_axis_label = "Count")    
@@ -86,7 +86,7 @@ def kategorical_hist_hover(dataframe, column, plot_height = 300, plot_width = 60
 
     source = ColumnDataSource(grouped_df)
 
-    p = figure(plot_height = plot_height, plot_width = plot_width, x_range=grouped_df, title=column,
+    p = figure(height = plot_height, width = plot_width, x_range=grouped_df, title=column,
                toolbar_location=None, tooltips=[("Anzahl", "@Id_count")])
 
     p.vbar(x=column, top = 'Id_count' , width=0.9, source=grouped_df)
@@ -103,7 +103,7 @@ def kategorical_hist_hover(dataframe, column, plot_height = 300, plot_width = 60
 def plot_line(dataframe, column, aggr = "count", plot_height = 300, plot_width = 600):
     column_str = column + '_' + aggr
     source = ColumnDataSource(dataframe.groupby(["DatumVerkauft"]))
-    p = figure(plot_width=plot_width, plot_height=plot_height, x_axis_type="datetime",title=column, toolbar_location=None, tooltips=[(column_str, "@"+column_str), ('Monat', "@MonatVerkauft_mean")])
+    p = figure(width=plot_width, height=plot_height, x_axis_type="datetime",title=column, toolbar_location=None, tooltips=[(column_str, "@"+column_str), ('Monat', "@MonatVerkauft_mean")])
     p.line(x="DatumVerkauft", y=column_str, source=source, line_width=2)
     p.left[0].formatter.use_scientific = False
     show(p)
@@ -111,7 +111,7 @@ def plot_line(dataframe, column, aggr = "count", plot_height = 300, plot_width =
 def plot_line_year(dataframe, column, aggr = "count", plot_height = 300, plot_width = 600):
     column_str = column + '_' + aggr
     source = ColumnDataSource(dataframe.groupby(["JahrVerkauft"]))
-    p = figure(plot_width=plot_width, plot_height=plot_height, x_axis_type="datetime",title=column, toolbar_location=None, tooltips=[(column_str, "@"+column_str)])
+    p = figure(width=plot_width, height=plot_height, x_axis_type="datetime",title=column, toolbar_location=None, tooltips=[(column_str, "@"+column_str)])
     p.line(x="JahrVerkauft", y=column_str, source=source, line_width=2)
     p.left[0].formatter.use_scientific = False
     show(p)
@@ -126,10 +126,10 @@ def plot_line_kategorical(dataframe, column, aggr = "count", Zeit_dauer = "Jahr"
         
         if aggr == "mean":
             df = dataframe.groupby([Z_Spalte, column])['Preis'].mean().unstack()
-            p = figure(plot_width=plot_width, plot_height=plot_height, x_axis_type="datetime", title=column, tooltips=[("Name","$name"), ("Durchschnittpreis", "@$name")])
+            p = figure(width=plot_width, height=plot_height, x_axis_type="datetime", title=column, tooltips=[("Name","$name"), ("Durchschnittpreis", "@$name")])
         else: 
             df = dataframe.groupby([Z_Spalte, column])['Id'].count().unstack()
-            p = figure(plot_width=plot_width, plot_height=plot_height, x_axis_type="datetime", title=column, tooltips=[("Name","$name"), ("Anzahl", "@$name")])
+            p = figure(width=plot_width, height=plot_height, x_axis_type="datetime", title=column, tooltips=[("Name","$name"), ("Anzahl", "@$name")])
         source = ColumnDataSource(df)
         for column_id, color in zip(df,colors):
             p.line(Z_Spalte, column_id, source=source, name=column_id, line_width=2, legend_label='{}'.format(column_id), color=color)
@@ -141,10 +141,10 @@ def plot_line_kategorical(dataframe, column, aggr = "count", Zeit_dauer = "Jahr"
         
         if aggr == "mean":
             df = dataframe.groupby([Z_Spalte, column])['Preis'].mean().unstack()
-            p = figure(plot_width=plot_width, plot_height=plot_height, x_axis_type="datetime", title=column, tooltips=[("Name","$name"), ("Durchschnittpreis", "@$name")])
+            p = figure(width=plot_width, height=plot_height, x_axis_type="datetime", title=column, tooltips=[("Name","$name"), ("Durchschnittpreis", "@$name")])
         else: 
             df = dataframe.groupby([Z_Spalte, column])['Id'].count().unstack()
-            p = figure(plot_width=plot_width, plot_height=plot_height, x_axis_type="datetime", title=column, tooltips=[("Name","$name"), ("Anzahl", "@$name")])
+            p = figure(width=plot_width, height=plot_height, x_axis_type="datetime", title=column, tooltips=[("Name","$name"), ("Anzahl", "@$name")])
         source = ColumnDataSource(df)
         for column_id, color in zip(df,colors):
             p.line(Z_Spalte, column_id, source=source, name=column_id, line_width=2, legend_label='{}'.format(column_id), color=color)
